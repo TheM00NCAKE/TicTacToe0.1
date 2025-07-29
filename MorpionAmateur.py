@@ -1,6 +1,5 @@
 import tkinter as tk
 import math
-import time
 #les states servent à communiquer les différentes phases au cours du jeu
 state=0     #state 0 : le jeu ne se lance pas
 compteur=1   #nombre de tour par défaut, c'est à dire 1. Le maximum est 9
