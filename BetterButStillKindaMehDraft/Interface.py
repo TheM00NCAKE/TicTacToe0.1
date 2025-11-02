@@ -153,7 +153,7 @@ class Interface():
         except Exception as e:
             print (f'An error occured in the titlescreen method : {e}')  
 
-    def endscreen(self):
+    def endscreen(self,player_o,player_x):
         """Displays the endscreen when the game is over, has multiple options such as quit, replay and titlescreen"""
         try :
             self.board_frame.destroy()
@@ -161,9 +161,9 @@ class Interface():
             message=('Match nul, dommage...' if self.game.state==State.GAME_DRAW else f'The player {"O" if self.game.state==State.O_WIN else "X"} won !')
             self.contenu_frame_end.create_text(750,300, text=message, font=("Segoe UI",30,"bold"),justify="center")
             self.contenu_frame_end.pack()
-            self.button_replay=self.create_button(self.frame_end,200,50,"deepskyblue3","deepskyblue4",lambda:[self.game.set_state(State.PLAYING),self.frame_end.destroy(),self.game.start_game(board_color="#B9E1F4",inventory_color="#907EBD")],100,25,"Replay",0.5,0.65,1)
+            self.button_replay=self.create_button(self.frame_end,200,50,"deepskyblue3","deepskyblue4",lambda:[self.game.set_state(State.PLAYING),self.frame_end.destroy(),self.game.start_game("#B9E1F4","#907EBD",player_o,player_x)],100,25,"Replay",0.5,0.65,1)
             self.button_quit=self.create_button(self.frame_end,200,50,"royalblue3","royalblue4",self.window.destroy,100,25,"Quit",0.7,0.65,1)
-            self.button_ts=self.create_button(self.frame_end,200,50,"seagreen1","seagreen3",lambda:[self.game.set_state(State.NOT_STARTED),self.frame_end.destroy(),self.game.start_game(board_color="#B9E1F4",inventory_color="#907EBD")],100,25,"Title screen",0.3,0.65,1)
+            self.button_ts=self.create_button(self.frame_end,200,50,"seagreen1","seagreen3",lambda:[self.game.set_state(State.NOT_STARTED),self.frame_end.destroy(),self.game.start_game("#B9E1F4","#907EBD",player_o,player_x)],100,25,"Title screen",0.3,0.65,1)
             self.frame_end.pack()
         except Exception as e:
             print (f'An error occured in the endscreen method  : {e}')  

@@ -31,6 +31,8 @@ class Game :
         self.ui=Interface(self)            
 
     def start_game(self,board_color,inventory_color,player_o,player_x):
+        self.player_o=player_o
+        self.player_x=player_x
         """Method to start the game by initializing all elements needed for the game through game_process"""
         if self.state==State.NOT_STARTED or self.state==State.PLAYING:      
             self.ui.game_process(player_o,player_x,inventory_color,board_color) #you decide here who starts first : game_process(player1,player2,...,...)
@@ -162,11 +164,6 @@ class Game :
                     self.ui.player_2.own_inventory.clear()
                     self.ui.player_2.inventory_item_id.clear()
                     self.protected_cells.clear()
-                    self.ui.endscreen()   
+                    self.ui.endscreen(self.player_o,self.player_x)   
         except Exception as e:
             print (f'An error occured in the process_player_action method : {e}')  
-
-new_game=Game()
-player_o=Player('circle',"#199E86","images/cercle.png","images/barricade.png","images/item2.png","images/bouclier_cercle.png","images/item4.png","images/BombePortable.png","images/VolDeData2.png","#B9E1F4","#907EBD")
-player_x=Player('X_cursor',"#1D1C70",'images/croix.png',"images/barricade.png","images/item2.png","images/bouclier_croix.png","images/item4.png","images/BombePortable.png","images/VolDeData2.png","#B9E1F4","#907EBD")
-new_game.start_game("#B9E1F4","#907EBD",player_o,player_x)
